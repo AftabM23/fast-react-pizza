@@ -7,7 +7,7 @@ function AppLayout() {
   const isLoading = navigation.state === "loading";
   console.log(isLoading);
   return (
-    <div>
+    <div className="layout">
       <Header />
       <main>{isLoading ? <LoadingComponent /> : <Outlet />}</main>
       <CartOverview />
