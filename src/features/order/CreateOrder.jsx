@@ -1,9 +1,9 @@
-import { useState } from "react";
+// import { useState } from "react";
 import {
   Form,
   redirect,
   useActionData,
-  useNavigate,
+  // useNavigate,
   useNavigation,
 } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant";
@@ -49,7 +49,7 @@ function CreateOrder() {
   const isSubmitting = navigation.state === "submitting";
   return (
     <div>
-      <h2>Ready to order? Let's go!</h2>
+      <h2>Ready to order? Lets go!</h2>
 
       <Form method="POST">
         <div>
