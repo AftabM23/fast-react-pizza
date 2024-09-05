@@ -15,7 +15,7 @@ function SearchOrder() {
     <div>
       <form onSubmit={(e) => handleSubmit(e)}>
         <input
-          placeholder="Enter orderId..."
+          placeholder="Enter order #"
           value={orderId}
           onChange={(e) => setOrderId(e.target.value)}
         />

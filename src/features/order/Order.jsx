@@ -27,6 +27,7 @@ function Order() {
   return (
     <div>
       <div>
+        <h1>{id}</h1>
         <h2>Status</h2>
 
         <div>
