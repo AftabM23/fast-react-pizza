@@ -1,4 +1,5 @@
 import { formatCurrency } from "../../utils/helpers";
+import SearchOrder from "./SearchOrder";
 
 function OrderItem({ item, isLoadingIngredients, ingredients }) {
   const { quantity, name, totalPrice } = item;
