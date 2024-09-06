@@ -1,13 +1,14 @@
+/* eslint-disable no-unused-vars */
 // Test ID: IIDSAT
 
 import {
   calcMinutesLeft,
   formatCurrency,
   formatDate,
-} from "../../utils/helpers";
+} from '../../utils/helpers';
 
-import { getOrder } from "../../services/apiRestaurant";
-import { useLoaderData } from "react-router-dom";
+import { getOrder } from '../../services/apiRestaurant';
+import { useLoaderData } from 'react-router-dom';
 
 function Order() {
   // Everyone can search for all orders, so for privacy reasons we're gonna gonna exclude names or address, these are only for the restaurant staff
@@ -40,7 +41,7 @@ function Order() {
         <p>
           {deliveryIn >= 0
             ? `Only ${calcMinutesLeft(estimatedDelivery)} minutes left 😃`
-            : "Order should have arrived"}
+            : 'Order should have arrived'}
         </p>
         <p>(Estimated delivery: {formatDate(estimatedDelivery)})</p>
       </div>

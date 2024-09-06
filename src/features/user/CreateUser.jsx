@@ -16,6 +16,7 @@ function CreateUser() {
         placeholder="Your full name"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
+        className="m-3 border-2 bg-white p-2"
       />
 
       {username !== '' && (
