@@ -15,8 +15,8 @@ function MenuItem({ pizza }) {
       />
       <div className="flex grow flex-col py-2">
         <p className="font-medium">{name}</p>
-        <p className="capitalize italic">{ingredients.join(', ')}</p>
-        <div className="mt-auto flex items-center justify-between text-xs">
+        <p className="text-sm capitalize italic">{ingredients.join(', ')}</p>
+        <div className="mt-auto flex items-center justify-between text-sm">
           {!soldOut ? (
             <p>{formatCurrency(unitPrice)}</p>
           ) : (
