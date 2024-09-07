@@ -7,6 +7,7 @@ import {
   useNavigation,
 } from 'react-router-dom';
 import { createOrder } from '../../services/apiRestaurant';
+import Button from '../../ui/Button';
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -48,29 +49,19 @@ function CreateOrder() {
   console.log(formErrors);
   const isSubmitting = navigation.state === 'submitting';
   return (
-    <div className="border-4 border-black p-4">
+    <div className="relative top-3 border-4 border-black p-4">
       <h2>Ready to order? Lets go!</h2>
 
       <Form method="POST">
         <div>
           <label>First Name</label>
-          <input
-            type="text"
-            name="customer"
-            required
-            className="ml-2 border-2 border-slate-900"
-          />
+          <input type="text" name="customer" required className="input" />
         </div>
 
         <div>
           <label>Phone number</label>
           <div>
-            <input
-              type="tel"
-              name="phone"
-              required
-              className="border-2 border-slate-900"
-            />
+            <input type="tel" name="phone" required className="input" />
             {formErrors?.phone && <p>{formErrors.phone}</p>}
           </div>
         </div>
@@ -78,12 +69,7 @@ function CreateOrder() {
         <div>
           <label>Address</label>
           <div>
-            <input
-              type="text"
-              name="address"
-              required
-              className="w-full rounded-full border border-stone-400 px-4 py-2 focus:border-0 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-0"
-            />
+            <input type="text" name="address" required className="input" />
           </div>
         </div>
 
@@ -100,12 +86,9 @@ function CreateOrder() {
         </div>
         <input type="hidden" name="cart" value={JSON.stringify(cart)} />
         <div>
-          <button
-            disabled={isSubmitting}
-            className="mt-2 rounded-full bg-yellow-400 p-2 font-semibold uppercase text-stone-800 transition-colors duration-300 hover:bg-yellow-300 focus:bg-yellow-300 focus:ring-2 focus:ring-yellow-400 disabled:cursor-not-allowed"
-          >
+          <Button disabled={isSubmitting}>
             {isSubmitting ? 'Placing your order' : 'Order now'}
-          </button>
+          </Button>
         </div>
       </Form>
     </div>
