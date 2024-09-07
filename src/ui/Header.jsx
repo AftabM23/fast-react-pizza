@@ -4,7 +4,7 @@ import UserName from './UserName';
 
 function Header() {
   return (
-    <header className="flex items-center justify-between border-b-2 border-stone-200 bg-yellow-500 p-2 uppercase sm:items-center sm:p-4">
+    <header className="flex items-center justify-between border-b-2 border-stone-200 bg-yellow-400 p-2 uppercase sm:items-center sm:p-4">
       <Link to="/" className="font-semibold tracking-widest sm:text-2xl">
         Fast-react-pizza & co.
       </Link>

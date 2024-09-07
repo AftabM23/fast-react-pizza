@@ -48,19 +48,29 @@ function CreateOrder() {
   console.log(formErrors);
   const isSubmitting = navigation.state === 'submitting';
   return (
-    <div className="">
+    <div className="border-4 border-black p-4">
       <h2>Ready to order? Lets go!</h2>
 
       <Form method="POST">
         <div>
           <label>First Name</label>
-          <input type="text" name="customer" required />
+          <input
+            type="text"
+            name="customer"
+            required
+            className="ml-2 border-2 border-slate-900"
+          />
         </div>
 
         <div>
           <label>Phone number</label>
           <div>
-            <input type="tel" name="phone" required />
+            <input
+              type="tel"
+              name="phone"
+              required
+              className="border-2 border-slate-900"
+            />
             {formErrors?.phone && <p>{formErrors.phone}</p>}
           </div>
         </div>
@@ -68,7 +78,12 @@ function CreateOrder() {
         <div>
           <label>Address</label>
           <div>
-            <input type="text" name="address" required />
+            <input
+              type="text"
+              name="address"
+              required
+              className="w-full rounded-full border border-stone-400 px-4 py-2 focus:border-0 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-0"
+            />
           </div>
         </div>
 
@@ -79,12 +94,16 @@ function CreateOrder() {
             id="priority"
             // value={withPriority}
             // onChange={(e) => setWithPriority(e.target.checked)}
+            className="accent-yellow-300 focus:ring-2 focus:ring-yellow-300 focus:ring-offset-0"
           />
           <label htmlFor="priority">Want to yo give your order priority?</label>
         </div>
         <input type="hidden" name="cart" value={JSON.stringify(cart)} />
         <div>
-          <button disabled={isSubmitting}>
+          <button
+            disabled={isSubmitting}
+            className="mt-2 rounded-full bg-yellow-400 p-2 font-semibold uppercase text-stone-800 transition-colors duration-300 hover:bg-yellow-300 focus:bg-yellow-300 focus:ring-2 focus:ring-yellow-400 disabled:cursor-not-allowed"
+          >
             {isSubmitting ? 'Placing your order' : 'Order now'}
           </button>
         </div>

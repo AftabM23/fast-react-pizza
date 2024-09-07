@@ -25,11 +25,13 @@ const fakeCart = [
 ];
 
 function Cart() {
-  const cart = fakeCart;
+  // const cart = fakeCart;
 
   return (
     <div>
-      <Link to="/menu">&larr; Back to menu</Link>
+      <Link to="/menu" className="text-blue-500 underline hover:text-blue-800">
+        &larr; Back to menu
+      </Link>
 
       <h2>Your cart, %NAME%</h2>
 
