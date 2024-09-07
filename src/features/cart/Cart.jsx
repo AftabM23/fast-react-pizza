@@ -31,9 +31,9 @@ function Cart() {
 
   return (
     <div className="mx-2">
-      <LinkButton to="/menu">&larr; Back to menu</LinkButton>
+      <LinkButton to="/menu ">&larr; Back to menu</LinkButton>
 
-      <h2 className="text-xl font-bold">Your cart, %NAME%</h2>
+      <h2 className="mt-3 text-xl font-bold">Your cart, %NAME%</h2>
       <div className="ms:flex mx-2 mt-2 divide-y-2 border-b-2 border-solid py-2 pb-3">
         {cart.map((item) => (
           <CartItem item={item} key={item.key} />
