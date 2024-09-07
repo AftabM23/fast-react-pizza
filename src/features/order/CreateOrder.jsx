@@ -49,43 +49,53 @@ function CreateOrder() {
   console.log(formErrors);
   const isSubmitting = navigation.state === 'submitting';
   return (
-    <div className="relative top-3 border-4 border-black p-4">
-      <h2>Ready to order? Lets go!</h2>
+    <div className="relative top-3">
+      <h2 className="bold p-4 text-xl font-semibold">
+        Ready to order? Lets go!
+      </h2>
 
-      <Form method="POST">
-        <div>
-          <label>First Name</label>
-          <input type="text" name="customer" required className="input" />
+      <Form method="POST" className="flex grow flex-col px-4 py-2">
+        <div className="my-2 flex flex-col gap-2 md:flex-row md:items-center">
+          <label className="md:basis-40">First Name</label>
+          <input
+            type="text"
+            name="customer"
+            required
+            className="input md:grow"
+          />
         </div>
 
-        <div>
-          <label>Phone number</label>
-          <div>
+        <div className="my-2 flex flex-col gap-2 md:flex-row md:items-center">
+          <label className="md:basis-40">Phone number</label>
+          <div className="flex grow flex-col">
             <input type="tel" name="phone" required className="input" />
-            {formErrors?.phone && <p>{formErrors.phone}</p>}
+            {formErrors?.phone && (
+              <p className="mt-2 rounded-lg bg-red-700 px-2 py-1.5 text-sm text-red-100">
+                {formErrors.phone}
+              </p>
+            )}
           </div>
         </div>
 
-        <div>
-          <label>Address</label>
-          <div>
-            <input type="text" name="address" required className="input" />
-          </div>
+        <div className="my-2 flex flex-col gap-2 md:flex-row md:items-center">
+          <label className="md:basis-40">Address</label>
+
+          <input type="text" name="address" required className="input grow" />
         </div>
 
-        <div>
+        <div className="mt-5 flex items-center gap-6">
           <input
             type="checkbox"
             name="priority"
             id="priority"
             // value={withPriority}
             // onChange={(e) => setWithPriority(e.target.checked)}
-            className="accent-yellow-300 focus:ring-2 focus:ring-yellow-300 focus:ring-offset-0"
+            className="size-4 accent-yellow-300 focus:ring-2 focus:ring-yellow-300 focus:ring-offset-0"
           />
           <label htmlFor="priority">Want to yo give your order priority?</label>
         </div>
         <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-        <div>
+        <div className="mt-5">
           <Button disabled={isSubmitting} type="primary">
             {isSubmitting ? 'Placing your order' : 'Order now'}
           </Button>
