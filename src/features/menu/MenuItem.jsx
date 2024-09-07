@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import Button from '../../ui/Button';
 import { formatCurrency } from '../../utils/helpers';
 
