@@ -1,19 +1,27 @@
 import { Link } from 'react-router-dom';
 
 /* eslint-disable react/prop-types */
-function Button({ children, disabled, to }) {
-  const className =
-    'sm:pz-4 mt-2 rounded-full bg-yellow-400 p-2 font-semibold uppercase text-stone-800 transition-colors duration-300 hover:bg-yellow-300 focus:bg-yellow-300 focus:ring-2 focus:ring-yellow-400 disabled:cursor-not-allowed sm:px-6';
+function Button({ children, disabled, to, type }) {
+  // const className =
+  //   'sm:pz-4 mt-2 rounded-full bg-yellow-400 p-2 font-semibold uppercase text-stone-800 transition-colors duration-300 hover:bg-yellow-300 focus:bg-yellow-300 focus:ring-2 focus:ring-yellow-400 disabled:cursor-not-allowed sm:px-6';
+  const base =
+    'sm:pz-4  rounded-full bg-yellow-400 font-semibold uppercase text-stone-800 transition-colors duration-300 hover:bg-yellow-300 focus:bg-yellow-300 focus:ring-2 focus:ring-yellow-400 disabled:cursor-not-allowed sm:px-6';
+  const className = {
+    primary: base + ' p-2  mt-2',
+    small: base + ' p-1 m-1',
+    clearBtn:
+      ' sm:pz-4  rounded-full hover:bg-stone-400 font-semibold uppercase text-stone-800 transition-colors duration-300 focus:bg-stone-300 focus:ring-2 focus:ring-stone-400 disabled:cursor-not-allowed sm:px-6 p-2  mt-2 border-2  bg-stone-300',
+  };
 
   if (to) {
     return (
-      <Link to={to} className={className}>
+      <Link to={to} className={className[type]}>
         Order pizzas
       </Link>
     );
   }
   return (
-    <button disabled={disabled} className={className}>
+    <button disabled={disabled} className={className[type]}>
       {children}
     </button>
   );

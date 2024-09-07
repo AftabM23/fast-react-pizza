@@ -22,7 +22,7 @@ function MenuItem({ pizza }) {
           ) : (
             <p className="text-stone-400">Sold out</p>
           )}
-          <Button>Add to cart</Button>
+          <Button type="small">Add to cart</Button>
         </div>
       </div>
     </li>

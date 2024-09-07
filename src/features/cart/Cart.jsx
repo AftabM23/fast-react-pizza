@@ -30,20 +30,22 @@ function Cart() {
   const cart = fakeCart;
 
   return (
-    <div>
+    <div className="mx-2">
       <LinkButton to="/menu">&larr; Back to menu</LinkButton>
 
       <h2 className="text-xl font-bold">Your cart, %NAME%</h2>
-      <div className="mt-2 divide-y-2 border-b-2 border-solid py-2 pb-3">
+      <div className="ms:flex mx-2 mt-2 divide-y-2 border-b-2 border-solid py-2 pb-3">
         {cart.map((item) => (
           <CartItem item={item} key={item.key} />
         ))}
       </div>
 
-      <div className="mt-4">
-        <Button to="/order/new">Order Pizzas</Button>
+      <div className="mt-4 flex justify-between">
+        <Button to="/order/new" type="primary">
+          Order Pizzas
+        </Button>
 
-        <button>Clear cart</button>
+        <Button type="clearBtn">Clear cart</Button>
       </div>
     </div>
   );
