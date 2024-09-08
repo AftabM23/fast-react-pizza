@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 /* eslint-disable react/prop-types */
-function Button({ children, disabled, to, type }) {
+function Button({ onClick, children, disabled, to, type }) {
   // const className =
   //   'sm:pz-4 mt-2 rounded-full bg-yellow-400 p-2 font-semibold uppercase text-stone-800 transition-colors duration-300 hover:bg-yellow-300 focus:bg-yellow-300 focus:ring-2 focus:ring-yellow-400 disabled:cursor-not-allowed sm:px-6';
   const base =
@@ -21,7 +21,7 @@ function Button({ children, disabled, to, type }) {
     );
   }
   return (
-    <button disabled={disabled} className={className[type]}>
+    <button onClick={onClick} disabled={disabled} className={className[type]}>
       {children}
     </button>
   );
