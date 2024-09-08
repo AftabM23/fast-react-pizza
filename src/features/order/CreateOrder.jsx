@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import { createOrder } from '../../services/apiRestaurant';
 import Button from '../../ui/Button';
+import { useSelector } from 'react-redux';
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -48,6 +49,7 @@ function CreateOrder() {
   // const formErrorsString = JSON.stringify(formErrors);
   console.log(formErrors);
   const isSubmitting = navigation.state === 'submitting';
+  const username = useSelector((state) => state.user.userName);
   return (
     <div className="relative top-3">
       <h2 className="bold p-4 text-xl font-semibold">
@@ -62,6 +64,7 @@ function CreateOrder() {
             name="customer"
             required
             className="input md:grow"
+            defaultValue={username}
           />
         </div>
 
