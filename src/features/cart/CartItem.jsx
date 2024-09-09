@@ -6,11 +6,10 @@ import { formatCurrency } from '../../utils/helpers';
 import { deleteItem } from '../cart/cartSlice';
 
 function CartItem({ item }) {
-  const { id, name, quantity, unitPrice } = item;
+  const { pizzaId, name, quantity, unitPrice } = item;
   const dispatch = useDispatch();
   const hanldeDeleteItem = () => {
-    dispatch(deleteItem(id));
-    console.log(id);
+    dispatch(deleteItem(pizzaId));
   };
   return (
     <li className="mt-3 list-none md:flex md:justify-between">
