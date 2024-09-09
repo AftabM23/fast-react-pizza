@@ -47,3 +47,11 @@ export const {
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
+
+export const totalPrice = (state) =>
+  state.cart.cart.reduce(
+    (total, item) => total + item.quantity * item.unitPrice,
+    0,
+  );
+export const totalPizzas = (state) =>
+  state.cart.cart.reduce((totalPizzas, item) => totalPizzas + item.quantity, 0);
