@@ -20,7 +20,7 @@ const cartSlice = createSlice({
           quantity: 1,
           pizzaId: action.payload.id,
         };
-        delete newItem.id;
+
         state.cart.push(newItem);
       }
     },
