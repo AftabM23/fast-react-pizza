@@ -2,7 +2,8 @@ import LinkButton from '../../ui/LinkButton';
 import Button from '../../ui/Button';
 import CartItem from './CartItem';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearCart } from '../cart/cartSlice';
+import { clearCart, cart } from '../cart/cartSlice';
+import EmptyCart from './EmptyCart';
 
 // const fakeCart = [
 //   {
@@ -30,20 +31,23 @@ import { clearCart } from '../cart/cartSlice';
 
 function Cart() {
   // const cart = fakeCart;
+  const pizzaCart = useSelector(cart);
   const username = useSelector((state) => state.user.userName);
-  const cart = useSelector((state) => state.cart.cart);
+
   const dispatch = useDispatch();
   function handleClearCart() {
     dispatch(clearCart());
   }
-  console.log(cart);
+
+  if (!pizzaCart.length) return <EmptyCart />;
+
   return (
     <div className="mx-2">
       <LinkButton to="/menu">&larr; Back to menu</LinkButton>
 
       <h2 className="mt-3 text-xl font-bold">Your cart, {username}</h2>
       <div className="ms:flex mx-2 mt-2 divide-y-2 border-b-2 border-solid py-2 pb-3">
-        {cart.map((item) => (
+        {pizzaCart.map((item) => (
           <CartItem item={item} key={item.id} />
         ))}
       </div>

@@ -55,3 +55,4 @@ export const totalPrice = (state) =>
   );
 export const totalPizzas = (state) =>
   state.cart.cart.reduce((totalPizzas, item) => totalPizzas + item.quantity, 0);
+export const cart = (state) => state.cart.cart;

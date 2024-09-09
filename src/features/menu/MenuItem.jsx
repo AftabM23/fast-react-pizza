@@ -13,7 +13,7 @@ function MenuItem({ pizza }) {
   function handleAddtoCart() {
     dispatch(addItem(pizza));
     console.log(pizza);
-    navigate('/cart');
+    // navigate('/cart');
   }
   return (
     <li className="flex gap-2 px-2 py-2">

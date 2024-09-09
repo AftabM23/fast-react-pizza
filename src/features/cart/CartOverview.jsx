@@ -6,7 +6,7 @@ function CartOverview() {
   const totalCartPrice = useSelector(totalPrice);
 
   const totalPizzasQuantity = useSelector(totalPizzas);
-
+  if (!totalCartPrice) return null;
   return (
     <div className="flex justify-between bg-stone-800 p-2 text-center uppercase text-stone-200 md:p-4">
       <p className="space-x-5">
