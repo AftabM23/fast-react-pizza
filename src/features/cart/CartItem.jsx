@@ -34,13 +34,10 @@ function CartItem({ item }) {
         <p>{formatCurrency(Number(unitPrice * quantity))}</p>
 
         <div>
-          {quantity > 1 && (
-            <Button type="small" onClick={handleDecrement}>
-              -
-            </Button>
-          )}
+          <Button type="small" onClick={handleDecrement}>
+            -
+          </Button>
 
-          <input value={quantity} />
           <Button type="small" onClick={handleIncrement}>
             +
           </Button>
