@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../ui/Button';
 import { formatCurrency } from '../../utils/helpers';
 import { addItem, deleteItem, pizzaQuantity } from '../cart/cartSlice';
+import UpdateItemQuantity from '../cart/UpdateItemQuantity';
 
 function MenuItem({ pizza }) {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
@@ -34,9 +35,12 @@ function MenuItem({ pizza }) {
             <p className="text-stone-400">Sold out</p>
           )}
           {pizzaCount && (
-            <Button type="small" onClick={handleDeletePizza}>
-              Delete pizza
-            </Button>
+            <div className="flex">
+              <UpdateItemQuantity pizzaId={id} quantity={pizzaCount} />
+              <Button type="small" onClick={handleDeletePizza}>
+                Delete pizza
+              </Button>
+            </div>
           )}
           {!pizzaCount && !soldOut && (
             <Button disabled={soldOut} onClick={handleAddtoCart} type="small">

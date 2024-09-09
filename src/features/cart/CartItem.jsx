@@ -3,23 +3,13 @@
 import { useDispatch } from 'react-redux';
 import Button from '../../ui/Button';
 import { formatCurrency } from '../../utils/helpers';
-import {
-  deleteItem,
-  increaseQuantity,
-  decreaseQuantity,
-} from '../cart/cartSlice';
+import { deleteItem } from '../cart/cartSlice';
+import UpdateItemQuantity from './UpdateItemQuantity';
 
 function CartItem({ item }) {
   const { pizzaId, name, quantity, unitPrice } = item;
   const dispatch = useDispatch();
 
-  const handleIncrement = () => {
-    dispatch(increaseQuantity(pizzaId));
-  };
-
-  const handleDecrement = () => {
-    dispatch(decreaseQuantity(pizzaId));
-  };
   const hanldeDeleteItem = () => {
     dispatch(deleteItem(pizzaId));
   };
@@ -32,17 +22,8 @@ function CartItem({ item }) {
 
       <div className="flex items-center justify-between text-sm md:space-x-2">
         <p>{formatCurrency(Number(unitPrice * quantity))}</p>
+        <UpdateItemQuantity quantity={quantity} pizzaId={pizzaId} />
 
-        <div>
-          <Button type="small" onClick={handleDecrement}>
-            -
-          </Button>
-
-          <Button type="small" onClick={handleIncrement}>
-            +
-          </Button>
-        </div>
-        {quantity === 0 && hanldeDeleteItem()}
         <Button onClick={hanldeDeleteItem} type="small">
           Delete
         </Button>
