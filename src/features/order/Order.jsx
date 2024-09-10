@@ -6,6 +6,7 @@ import {
   formatDate,
 } from '../../utils/helpers';
 
+import UpdateOrderButton from './UpdateOrderButton';
 import { getOrder } from '../../services/apiRestaurant';
 import { useFetcher, useLoaderData } from 'react-router-dom';
 import OrderItem from './OrderItem';
@@ -91,6 +92,7 @@ function Order() {
           To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}
         </p>
       </div>
+      <UpdateOrderButton />
     </div>
   );
 }
