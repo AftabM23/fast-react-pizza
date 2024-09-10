@@ -5,6 +5,7 @@ import Button from '../../ui/Button';
 import { formatCurrency } from '../../utils/helpers';
 import { deleteItem } from '../cart/cartSlice';
 import UpdateItemQuantity from './UpdateItemQuantity';
+import DeleteButton from '../../ui/DeleteButton';
 
 function CartItem({ item }) {
   const { pizzaId, name, quantity, unitPrice } = item;
@@ -24,9 +25,7 @@ function CartItem({ item }) {
         <p>{formatCurrency(Number(unitPrice * quantity))}</p>
         <UpdateItemQuantity quantity={quantity} pizzaId={pizzaId} />
 
-        <Button onClick={hanldeDeleteItem} type="small">
-          Delete
-        </Button>
+        <DeleteButton pizzaId={pizzaId} />
       </div>
     </li>
   );
