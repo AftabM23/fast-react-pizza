@@ -82,11 +82,17 @@ function CreateOrder() {
         </div>
         <input type="hidden" name="cart" value={JSON.stringify(cart)} />
         <div className="mt-5">
-          <Button disabled={isSubmitting} type="primary">
-            {isSubmitting
-              ? 'Placing your order'
-              : `Order now  total price:${formatCurrency(totalCartPrice + (withPriority ? totalCartPrice * 0.2 : 0))}`}
-          </Button>
+          {cart.length < 1 ? (
+            <Button type="small" to="/menu">
+              Cart is empty, go to menu to order!
+            </Button>
+          ) : (
+            <Button disabled={isSubmitting} type="primary">
+              {isSubmitting
+                ? 'Placing your order'
+                : `Order now  total price:${formatCurrency(totalCartPrice + (withPriority ? totalCartPrice * 0.2 : 0))}`}
+            </Button>
+          )}
         </div>
       </Form>
     </div>
