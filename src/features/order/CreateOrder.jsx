@@ -8,10 +8,11 @@ import {
 } from 'react-router-dom';
 import { createOrder } from '../../services/apiRestaurant';
 import Button from '../../ui/Button';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import store from '../../store';
 import { clearCart, totalPrice } from '../cart/cartSlice';
 import { formatCurrency } from '../../utils/helpers';
+import { fetchAddress } from '../user/userSlice';
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -21,18 +22,24 @@ const isValidPhone = (str) =>
 
 function CreateOrder() {
   const formErrors = useActionData();
-  // const formErrorsString = JSON.stringify(formErrors);
-  console.log(formErrors);
+  const formErrorsString = JSON.stringify(formErrors);
+  console.log(formErrorsString);
   const [withPriority, setWithPriority] = useState(false);
-
   const cart = useSelector((state) => state.cart.cart);
-
   const navigation = useNavigation();
-
   const totalCartPrice = useSelector(totalPrice);
-
   const isSubmitting = navigation.state === 'submitting';
-  const username = useSelector((state) => state.user.userName);
+  const {
+    userName: username,
+    address,
+    status,
+    position,
+    errorMessage,
+  } = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
+  const fetchAddr = useSelector(fetchAddress);
+
   return (
     <div className="relative top-3">
       <h2 className="bold p-4 text-xl font-semibold">
@@ -65,8 +72,20 @@ function CreateOrder() {
 
         <div className="my-2 flex flex-col gap-2 md:flex-row md:items-center">
           <label className="md:basis-40">Address</label>
-
-          <input type="text" name="address" required className="input grow" />
+          <input
+            type="text"
+            name="address"
+            required
+            className="input grow"
+            defaultValue={address ? address : ''}
+            disabled={status === 'loading'}
+          />
+          {!address && !errorMessage && (
+            <Button type="small" utton onClick={() => dispatch(fetchAddr)}>
+              GetPosition
+            </Button>
+          )}
+          {errorMessage && <p>{errorMessage}</p>}
         </div>
 
         <div className="mt-5 flex items-center gap-6">
@@ -81,6 +100,15 @@ function CreateOrder() {
           <label htmlFor="priority">Want to yo give your order priority?</label>
         </div>
         <input type="hidden" name="cart" value={JSON.stringify(cart)} />
+        <input
+          type="hidden"
+          name="position"
+          value={
+            position.longitude &&
+            position.latitude &&
+            `${position.longitude} , ${position.latitude}`
+          }
+        />
         <div className="mt-5">
           {cart.length < 1 ? (
             <Button type="small" to="/menu">
@@ -105,13 +133,17 @@ export async function action({ request }) {
     ...data,
     cart: JSON.parse(data.cart),
     priority: data.priority,
+    position: data.position,
   };
+  console.log(data.position);
+  console.log(order);
   const errors = {};
   if (!isValidPhone(order.phone)) {
     errors.phone = 'Incorrect phone number, please enter a valid phone number';
   }
   if (Object.keys(errors).length > 0) return errors;
   const newOrder = await createOrder(order);
+
   store.dispatch(clearCart());
   return redirect(`/order/${newOrder.id}`);
 }

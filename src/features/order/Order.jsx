@@ -24,7 +24,7 @@ function Order() {
     cart,
   } = order;
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
-  console.log(cart);
+
   return (
     <div className="m-6">
       <div className="flex flex-wrap justify-between">
